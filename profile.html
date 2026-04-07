@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProNet - Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #111827;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .topbar {
+      height: 82px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .logo-search {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: fit-content;
+    }
+
+    .brand-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 24px;
+    }
+
+    .brand span {
+      font-size: 22px;
+      font-weight: 800;
+      color: #4f46e5;
+    }
+
+    .search-box {
+      width: 560px;
+      height: 48px;
+      border: 1px solid #d9e0ea;
+      border-radius: 14px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+    }
+
+    .search-box i {
+      width: 18px;
+      height: 18px;
+      color: #94a3b8;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 16px;
+      color: #374151;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-item {
+      width: 84px;
+      height: 76px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #4b5563;
+      transition: 0.25s ease;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-item i {
+      width: 22px;
+      height: 22px;
+    }
+
+    .nav-item.active {
+      background: #eaf2ff;
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    .profile-page {
+      max-width: 1140px;
+      margin: 30px auto;
+      padding: 0 16px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dfe6ef;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+      overflow: hidden;
+    }
+
+    .profile-hero {
+      padding-bottom: 24px;
+    }
+
+    .profile-cover {
+      height: 160px;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+    }
+
+    .profile-main {
+      padding: 0 30px;
+      margin-top: -48px;
+    }
+
+    .profile-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .profile-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #ffffff;
+      background: #ffffff;
+    }
+
+    .edit-profile-btn {
+      margin-top: 80px;
+      height: 46px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1px solid #d7dee8;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .edit-profile-btn i {
+      width: 18px;
+      height: 18px;
+    }
+
+    .profile-info {
+      margin-top: 18px;
+    }
+
+    .profile-info h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .profile-role {
+      font-size: 22px;
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .profile-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-bottom: 14px;
+      color: #4b5563;
+      font-size: 16px;
+    }
+
+    .profile-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .profile-meta i {
+      width: 18px;
+      height: 18px;
+    }
+
+    .connections-link {
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 22px;
+      display: inline-block;
+    }
+
+    .profile-bio {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 20px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1f2937;
+    }
+
+    .section-card {
+      padding: 30px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: #111827;
+    }
+
+    .icon-btn i {
+      width: 22px;
+      height: 22px;
+    }
+
+    .about-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #374151;
+    }
+
+    .experience-list,
+    .education-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .experience-item,
+    .education-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .company-logo,
+    .edu-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 8px;
+      background: #e5e7eb;
+      flex-shrink: 0;
+    }
+
+    .experience-content h3,
+    .education-content h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .experience-content h4,
+    .education-content h4 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #1f2937;
+    }
+
+    .date-line {
+      font-size: 15px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .experience-content p,
+    .education-content p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #374151;
+    }
+
+    .skills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill-chip {
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      font-size: 15px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        flex-direction: column;
+        height: auto;
+        padding: 14px;
+        gap: 14px;
+      }
+
+      .logo-search {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .nav-menu {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-item {
+        width: 64px;
+        height: 66px;
+        font-size: 12px;
+      }
+
+      .profile-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .edit-profile-btn {
+        margin-top: 0;
+      }
+
+      .profile-avatar {
+        width: 130px;
+        height: 130px;
+      }
+
+      .profile-main {
+        margin-top: -36px;
+        padding: 0 20px;
+      }
+
+      .section-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .profile-meta {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .experience-item,
+      .education-item {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-search">
+      <div class="brand">
+        <div class="brand-box">P</div>
+        <span>ProNet</span>
+      </div>
+
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Search for jobs, people, or skills" />
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <a class="nav-item" href="index.html">
+        <i data-lucide="house"></i>
+        <span>Feed</span>
+      </a>
+      <a class="nav-item" href="projects.html">
+        <i data-lucide="briefcase-business"></i>
+        <span>Projects</span>
+      </a>
+      <a class="nav-item" href="jobs.html">
+        <i data-lucide="briefcase"></i>
+        <span>Jobs</span>
+      </a>
+      <a class="nav-item" href="network.html">
+        <i data-lucide="users"></i>
+        <span>Network</span>
+      </a>
+      <a class="nav-item active" href="profile.html">
+        <i data-lucide="user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="profile-page">
+    <section class="card profile-hero">
+      <div class="profile-cover"></div>
+
+      <div class="profile-main">
+        <div class="profile-top-row">
+          <img
+            class="profile-avatar"
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80"
+            alt="Alex Johnson"
+          />
+
+          <button class="edit-profile-btn">
+            <i data-lucide="pencil"></i>
+            Edit profile
+          </button>
+        </div>
+
+        <div class="profile-info">
+          <h1>Alex Johnson</h1>
+          <div class="profile-role">Senior Product Designer</div>
+
+          <div class="profile-meta">
+            <span><i data-lucide="map-pin"></i> San Francisco, CA</span>
+            <span><i data-lucide="briefcase-business"></i> TechCorp Inc.</span>
+          </div>
+
+          <a href="#" class="connections-link">842 connections</a>
+
+          <p class="profile-bio">
+            Passionate about creating user-centered designs that solve real problems. 10+ years of experience in product design and UX research.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-head">
+        <h2>About</h2>
+        <button class="icon-btn">
+          <i data-lucide="pencil"></i>
+        </button>
+      </div>
+
+      <p class="about-text">
+        Passionate about creating user-centered designs that solve real problems. 10+ years of experience in product design and UX research.
+      </p>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <button class="icon-btn">
+          <i data-lucide="plus"></i>
+        </button>
+      </div>
+
+      <div class="experience-list">
+        <div class="experience-item">
+          <div class="company-logo"></div>
+          <div class="experience-content">
+            <h3>Senior Product Designer</h3>
+            <h4>TechCorp Inc.</h4>
+            <div class="date-line">Jan 2022 - Present &nbsp; • &nbsp; San Francisco, CA</div>
+            <p>Leading design initiatives for core products, managing a team of 5 designers.</p>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="company-logo"></div>
+          <div class="experience-content">
+            <h3>Product Designer</h3>
+            <h4>StartupXYZ</h4>
+            <div class="date-line">Jun 2019 - Dec 2021 &nbsp; • &nbsp; San Francisco, CA</div>
+            <p>Designed user experiences for mobile and web applications.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-head">
+        <h2>Education</h2>
+        <button class="icon-btn">
+          <i data-lucide="plus"></i>
+        </button>
+      </div>
+
+      <div class="education-list">
+        <div class="education-item">
+          <div class="edu-logo"></div>
+          <div class="education-content">
+            <h3>Stanford University</h3>
+            <h4>Bachelor of Science in Computer Science</h4>
+            <div class="date-line">2015 - 2019</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section-card">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <button class="icon-btn">
+          <i data-lucide="plus"></i>
+        </button>
+      </div>
+
+      <div class="skills-wrap">
+        <span class="skill-chip">Product Design</span>
+        <span class="skill-chip">UX Research</span>
+        <span class="skill-chip">Figma</span>
+        <span class="skill-chip">Adobe Creative Suite</span>
+        <span class="skill-chip">Prototyping</span>
+        <span class="skill-chip">User Testing</span>
+        <span class="skill-chip">Design Systems</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

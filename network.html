@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProNet - Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #111827;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .topbar {
+      height: 82px;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .logo-search {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: fit-content;
+    }
+
+    .brand-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 24px;
+    }
+
+    .brand span {
+      font-size: 22px;
+      font-weight: 800;
+      color: #4f46e5;
+    }
+
+    .search-box {
+      width: 545px;
+      height: 48px;
+      border: 1px solid #d9e0ea;
+      border-radius: 14px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 16px;
+    }
+
+    .search-box i {
+      width: 18px;
+      height: 18px;
+      color: #94a3b8;
+    }
+
+    .search-box input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 16px;
+      color: #374151;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-item {
+      width: 84px;
+      height: 76px;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #4b5563;
+      transition: 0.25s ease;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav-item i {
+      width: 22px;
+      height: 22px;
+    }
+
+    .nav-item.active {
+      background: #eaf2ff;
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    .network-page {
+      max-width: 1400px;
+      margin: 26px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .network-left {
+      position: sticky;
+      top: 100px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dfe6ef;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
+    }
+
+    .network-manage-card {
+      padding: 28px 20px;
+    }
+
+    .network-manage-card h2 {
+      font-size: 22px;
+      margin-bottom: 26px;
+    }
+
+    .network-stat-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 4px;
+    }
+
+    .network-stat-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .network-stat-left i {
+      width: 21px;
+      height: 21px;
+      color: #4b5563;
+    }
+
+    .network-stat-left span {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .network-stat-item strong {
+      font-size: 16px;
+      color: #4b5563;
+    }
+
+    .network-main {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .invitation-card {
+      min-height: 122px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .invitation-card h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .invitation-card p {
+      font-size: 16px;
+      color: #6b7280;
+    }
+
+    .network-section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .person-card {
+      background: #fff;
+      border: 1px solid #dfe7f2;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .person-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .person-cover {
+      height: 120px;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+      position: relative;
+    }
+
+    .close-person-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .person-body {
+      padding: 0 26px 24px;
+      text-align: center;
+    }
+
+    .person-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+      border: 5px solid #ffffff;
+      background: #ffffff;
+      display: block;
+      margin: -48px auto 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .person-body h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .person-role {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .mutual-line {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+
+    .connect-btn {
+      width: 100%;
+      height: 54px;
+      border-radius: 999px;
+      border: 2px solid #2563eb;
+      background: #ffffff;
+      color: #2563eb;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .connect-btn:hover {
+      background: #eff6ff;
+    }
+
+    .connect-btn.connected {
+      background: #2563eb;
+      color: white;
+    }
+
+    @media (max-width: 1100px) {
+      .network-page {
+        grid-template-columns: 1fr;
+      }
+
+      .network-left {
+        position: static;
+      }
+
+      .search-box {
+        width: 360px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .topbar {
+        flex-direction: column;
+        height: auto;
+        padding: 14px;
+        gap: 14px;
+      }
+
+      .logo-search {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .nav-menu {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav-item {
+        width: 64px;
+        height: 66px;
+        font-size: 12px;
+      }
+
+      .people-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-search">
+      <div class="brand">
+        <div class="brand-box">P</div>
+        <span>ProNet</span>
+      </div>
+
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Search for jobs, people, or skills" />
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <a class="nav-item" href="index.html">
+        <i data-lucide="house"></i>
+        <span>Feed</span>
+      </a>
+      <a class="nav-item" href="projects.html">
+        <i data-lucide="briefcase-business"></i>
+        <span>Projects</span>
+      </a>
+      <a class="nav-item" href="jobs.html">
+        <i data-lucide="briefcase"></i>
+        <span>Jobs</span>
+      </a>
+      <a class="nav-item active" href="network.html">
+        <i data-lucide="users"></i>
+        <span>Network</span>
+      </a>
+      <a class="nav-item" href="profile.html">
+        <i data-lucide="user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="network-page">
+    <aside class="network-left">
+      <section class="card network-manage-card">
+        <h2>Manage my network</h2>
+
+        <div class="network-stat-item">
+          <div class="network-stat-left">
+            <i data-lucide="users"></i>
+            <span>Connections</span>
+          </div>
+          <strong>842</strong>
+        </div>
+
+        <div class="network-stat-item">
+          <div class="network-stat-left">
+            <i data-lucide="users"></i>
+            <span>Followers</span>
+          </div>
+          <strong>1,234</strong>
+        </div>
+
+        <div class="network-stat-item">
+          <div class="network-stat-left">
+            <i data-lucide="users"></i>
+            <span>Following</span>
+          </div>
+          <strong>567</strong>
+        </div>
+      </section>
+    </aside>
+
+    <section class="network-main">
+      <section class="card invitation-card">
+        <h2>Invitations</h2>
+        <p>Manage your received and sent invitations</p>
+      </section>
+
+      <section>
+        <h2 class="network-section-title">People you may know</h2>
+
+        <div class="people-grid">
+          <article class="person-card">
+            <div class="person-cover">
+              <button class="close-person-btn">&times;</button>
+            </div>
+            <div class="person-body">
+              <img
+                class="person-avatar"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80"
+                alt="Jessica Martinez"
+              />
+              <h3>Jessica Martinez</h3>
+              <p class="person-role">Product Designer</p>
+              <p class="mutual-line">23 mutual connections</p>
+              <button class="connect-btn">Connect</button>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-cover">
+              <button class="close-person-btn">&times;</button>
+            </div>
+            <div class="person-body">
+              <img
+                class="person-avatar"
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+                alt="Robert Taylor"
+              />
+              <h3>Robert Taylor</h3>
+              <p class="person-role">Software Architect</p>
+              <p class="mutual-line">45 mutual connections</p>
+              <button class="connect-btn">Connect</button>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-cover">
+              <button class="close-person-btn">&times;</button>
+            </div>
+            <div class="person-body">
+              <img
+                class="person-avatar"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80"
+                alt="Lisa Anderson"
+              />
+              <h3>Lisa Anderson</h3>
+              <p class="person-role">HR Director</p>
+              <p class="mutual-line">67 mutual connections</p>
+              <button class="connect-btn">Connect</button>
+            </div>
+          </article>
+
+          <article class="person-card">
+            <div class="person-cover">
+              <button class="close-person-btn">&times;</button>
+            </div>
+            <div class="person-body">
+              <img
+                class="person-avatar"
+                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80"
+                alt="James Wilson"
+              />
+              <h3>James Wilson</h3>
+              <p class="person-role">Backend Engineer</p>
+              <p class="mutual-line">12 mutual connections</p>
+              <button class="connect-btn">Connect</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    const closeButtons = document.querySelectorAll(".close-person-btn");
+    closeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".person-card");
+        if (card) {
+          card.style.opacity = "0";
+          card.style.transform = "scale(0.96)";
+          setTimeout(() => {
+            card.remove();
+          }, 200);
+        }
+      });
+    });
+
+    const connectButtons = document.querySelectorAll(".connect-btn");
+    connectButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.classList.contains("connected")) {
+          btn.classList.remove("connected");
+          btn.textContent = "Connect";
+        } else {
+          btn.classList.add("connected");
+          btn.textContent = "Connected";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProNet Feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-search">
+      <div class="brand">
+        <div class="brand-box">P</div>
+        <span>ProNet</span>
+      </div>
+
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Search for jobs, people, or skills" />
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <a class="nav-item active" href="index.html">
+        <i data-lucide="house"></i>
+        <span>Feed</span>
+      </a>
+      <a class="nav-item" href="projects.html">
+        <i data-lucide="briefcase-business"></i>
+        <span>Projects</span>
+      </a>
+      <a class="nav-item" href="jobs.html">
+        <i data-lucide="briefcase"></i>
+        <span>Jobs</span>
+      </a>
+      <a class="nav-item" href="network.html">
+        <i data-lucide="users"></i>
+        <span>Network</span>
+      </a>
+      <a class="nav-item" href="profile.html">
+        <i data-lucide="user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <aside class="left-sidebar">
+      <section class="card profile-card">
+        <div class="profile-banner"></div>
+
+        <div class="profile-top">
+          <div class="avatar-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80"
+              alt="Alex Johnson"
+              width="96"
+              height="96"
+            />
+            <div class="verified-badge">
+              <i data-lucide="badge-check"></i>
+            </div>
+          </div>
+
+          <h3>Alex Johnson</h3>
+          <p>Senior Product Designer</p>
+        </div>
+
+        <div class="skills-box">
+          <div class="skills-title">
+            <i data-lucide="badge-check"></i>
+            <span>Verified Skills</span>
+          </div>
+          <div class="skills-tags">
+            <span>Product Design</span>
+            <span>UX Research</span>
+            <span>Figma</span>
+          </div>
+        </div>
+
+        <div class="profile-stats">
+          <div class="stat-row">
+            <span>Profile views</span>
+            <strong class="green">↗ +12%</strong>
+          </div>
+          <div class="stat-row">
+            <span>Connections</span>
+            <strong class="blue">842</strong>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="feed-column">
+      <section class="card composer-card">
+        <img
+          class="mini-avatar"
+          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80"
+          alt="User avatar"
+          width="56"
+          height="56"
+        />
+        <input type="text" placeholder="Share something meaningful..." />
+      </section>
+
+      <section class="card filter-card">
+        <div class="filter-left">
+          <i data-lucide="funnel"></i>
+          <span>Filter by:</span>
+        </div>
+
+        <div class="filter-pills">
+          <button class="pill active">All</button>
+          <button class="pill">Insights</button>
+          <button class="pill">Questions</button>
+          <button class="pill">Achievements</button>
+          <button class="pill">Projects</button>
+        </div>
+      </section>
+
+      <article class="card post-card">
+        <div class="post-header">
+          <div class="post-user">
+            <div class="post-avatar-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=300&q=80"
+                alt="Sarah Chen"
+                width="60"
+                height="60"
+              />
+              <div class="small-badge">
+                <i data-lucide="badge-check"></i>
+              </div>
+            </div>
+
+            <div class="post-user-info">
+              <div class="name-line">
+                <h4>Sarah Chen</h4>
+                <span class="label insight">
+                  <i data-lucide="lightbulb"></i>
+                  Insight
+                </span>
+              </div>
+              <p>Software Engineer at Google</p>
+              <small>2h ago</small>
+            </div>
+          </div>
+
+          <button class="icon-btn">
+            <i data-lucide="more-horizontal"></i>
+          </button>
+        </div>
+
+        <div class="post-content">
+          <p>
+            Just shipped a major performance optimization that reduced our app's
+            load time by 60%. Here's what worked: 1) Code splitting at route level,
+            2) Lazy loading images, 3) Service worker caching. Happy to share the
+            technical breakdown if anyone's interested.
+          </p>
+
+          <div class="hashtags">
+            <span>#performance</span>
+            <span>#webdev</span>
+            <span>#optimization</span>
+          </div>
+        </div>
+
+        <div class="post-meta">
+          <div class="likes">
+            <i data-lucide="thumbs-up"></i>
+            <span>89</span>
+          </div>
+          <div class="comments-shares">
+            <span>12 comments</span>
+            <span>5 shares</span>
+          </div>
+        </div>
+
+        <div class="post-actions">
+          <button><i data-lucide="thumbs-up"></i> Like</button>
+          <button><i data-lucide="message-square"></i> Comment</button>
+          <button><i data-lucide="share-2"></i> Share</button>
+        </div>
+      </article>
+
+      <article class="card post-card second-post">
+        <div class="post-header">
+          <div class="post-user">
+            <div class="post-avatar-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80"
+                alt="Michael Rodriguez"
+                width="60"
+                height="60"
+              />
+              <div class="small-badge">
+                <i data-lucide="badge-check"></i>
+              </div>
+            </div>
+
+            <div class="post-user-info">
+              <div class="name-line">
+                <h4>Michael Rodriguez</h4>
+                <span class="label question">
+                  <i data-lucide="circle-help"></i>
+                  Question
+                </span>
+              </div>
+              <p>Marketing Director at StartupXYZ</p>
+              <small>5h ago</small>
+            </div>
+          </div>
+
+          <button class="icon-btn">
+            <i data-lucide="more-horizontal"></i>
+          </button>
+        </div>
+      </article>
+    </section>
+
+    <aside class="right-sidebar">
+      <section class="card info-card">
+        <h2>Why ProNet is Different</h2>
+
+        <ul>
+          <li><strong>Quality over quantity:</strong> Content filters keep your feed relevant</li>
+          <li><strong>Transparent jobs:</strong> See response rates & times before applying</li>
+          <li><strong>Verified skills:</strong> Prove your expertise, not just claim it</li>
+          <li><strong>Project showcases:</strong> Show your work, not just talk about it</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
